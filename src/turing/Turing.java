@@ -3,7 +3,7 @@ package turing;
 import javax.swing.JOptionPane;
 
 /**
- * 
+ * jajaja
  * @author jesusgtz
  *
  */
