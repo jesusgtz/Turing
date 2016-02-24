@@ -54,6 +54,58 @@ public class Turing {
 	}
 	
 	/**
+	 * Funcion para procesar una cinta con n ceros, seguidos de n unos
+	 */
+	public void nCerosUnos() {
+		while(this.actual != Estados.ef) {
+			if(this.actual == Estados.e0 &&
+			   this.cinta.charAt(this.cabezal) == '0') {
+					this.actual = Estados.e1;
+					this.cinta = this.cinta.substring(0,this.cabezal) + 'b' 
+							+ this.cinta.substring(this.cabezal+1);
+					this.cabezal++;
+			}
+			if(this.actual == Estados.e1 &&
+			   this.cinta.charAt(this.cabezal) == '0') {
+					this.cabezal++;
+			}
+			if(this.actual == Estados.e1 &&
+			   this.cinta.charAt(this.cabezal) == '1') {
+					this.cabezal++;
+			}
+			if(this.actual == Estados.e1 &&
+			   this.cinta.charAt(this.cabezal) == 'b') {
+					this.actual = Estados.e2;
+					this.cabezal--;
+			}
+			if(this.actual == Estados.e2 &&
+			   this.cinta.charAt(this.cabezal) == '1') {
+					this.actual = Estados.e3;
+					this.cinta = this.cinta.substring(0,this.cabezal) + 'b' 
+							+ this.cinta.substring(this.cabezal+1);
+					this.cabezal--;
+			}
+			if(this.actual == Estados.e3 &&
+			   this.cinta.charAt(this.cabezal) == '0') {
+					this.cabezal--;
+			}
+			if(this.actual == Estados.e3 &&
+			   this.cinta.charAt(this.cabezal) == '1') {
+					this.cabezal--;
+			}
+			if(this.actual == Estados.e3 &&
+			   this.cinta.charAt(this.cabezal) == 'b') {
+					this.actual = Estados.e0;
+					this.cabezal++;
+			}
+			if(this.actual == Estados.e0 &&
+			   this.cinta.charAt(this.cabezal) == 'b') {
+					this.actual = Estados.ef;
+			}
+		}
+	}
+	
+	/**
 	 * Funcion para imprimir el contenido de la cinta
 	 */
 	public void imprimirCinta() {
@@ -68,7 +120,7 @@ public class Turing {
 		String tmp = JOptionPane.showInputDialog(null,
 				"Escribe el contenido de la cinta:\n","Captura",3);
 		Turing t = new Turing(tmp);
-		t.suma();
+		t.nCerosUnos();
 		t.imprimirCinta();
 	}
 
